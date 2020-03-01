@@ -29,21 +29,29 @@
             @foreach($posts as $post)
 
                 <tr>
-
+                    <!-- ID -->
                     <td>{{$post->id}}</td>
+                    <!-- Owner -->
                     <td><a href="{{route('posts.edit',$post->id)}}">{{$post->user->name}}</a></td>
+                    <!-- Role -->
                     <td>{{$post->user->role->name}}</td>
+                    <!-- Category -->
                     <td>{{$post->category? $post->category->name : 'Uncategorized'}}</td>
-                    <td><img height="45" src="{{ $post->photo? $post->photo->file : 'http://placehold.it/400x400' }}" alt=""></td>
+                    <!-- Photo -->
+                    <td><img height="45" src="{{ $post->photo? url($post->photo->file) : 'http://placehold.it/400x400' }}" alt=""></td>
+                    <!-- Title -->
                     <td>{{$post->title}}</td>
+                    <!-- Body -->
                     <td>{{str_limit($post->body,10)}}</td>
+                    <!-- Post -->
                     <td><a href="{{route('post', $post->slug)}}">View Post</a> </td>
-
+                    <!-- Comments -->
                     <td><a href="{{route('comments.show', $post->id)}}">View Comments</a> </td>
-
+                    <!-- Comment DB -->
                     <td>{{count($post->comments)}}</td>
-
+                    <!-- Created -->
                     <td>{{$post->created_at->diffForHumans()}}</td>
+                    <!-- Updated -->
                     <td>{{$post->updated_at->diffForHumans()}}</td>
 
                 </tr>
