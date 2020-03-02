@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('/pposts', 'PublicPostsController');
+
+Route::get('/post/{id}','AdminPostsController@post')->name('post');
+
 
 
 
@@ -42,7 +46,7 @@ Route::group(['middleware'=>'admin'], function (){
 
     Route::delete('admin/delete/media', 'AdminMediasController@deleteMedia');
 
-    Route::get('/post/{id}','AdminPostsController@post')->name('post');
+
 
     Route::post('comment/reply', 'CommentRepliesController@createReply');
 

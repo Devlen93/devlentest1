@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
@@ -37,9 +38,8 @@ class PostCommentsController extends Controller
 
     public function show($id)
     {
-        $post = Post::findOrFail($id);
-        $comments = $post->comments;
-        return view('admin.comments.show', compact('comments'));
+
+        return "work";
     }
 
     public function edit($id)

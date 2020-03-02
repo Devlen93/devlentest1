@@ -25,10 +25,10 @@ class PostsCreateRequest extends FormRequest
     {
         return [
             //
-      /*      'title'      =>'required',
+            'title'      =>'required',
             'photo_id'   =>'required',
             'body'       =>'required',
-            'category_id'=>'required',*/
+            'category_id'=>'required',
         ];
     }
 }

@@ -9,6 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+
+
     <title>Admin</title>
 
     <!-- Bootstrap Core CSS -->
@@ -44,7 +46,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Home</a>
+            <a class="navbar-brand" href="{{url('/')}}">Home</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -54,7 +56,7 @@
 
 
             <!-- /.dropdown -->
-            <li class="dropdown">
+            <li class="dropdown" role="menu">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
@@ -64,7 +66,9 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+
+
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -73,6 +77,11 @@
 
 
         </ul>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
 
 
 
@@ -118,7 +127,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="{{url('home')}}"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                        <a href="{{url('/')}}"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                     </li>
 
                     <li>
@@ -356,6 +365,7 @@
 
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
+
 
 
 @yield('scripts')

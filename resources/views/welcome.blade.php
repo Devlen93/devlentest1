@@ -71,6 +71,7 @@
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
                         <a href="{{ route('users.index') }}">Admin</a>
+                        <a href="{{ route('pposts.index') }}">Posts</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>

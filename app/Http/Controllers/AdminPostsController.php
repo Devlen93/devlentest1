@@ -153,6 +153,7 @@ class AdminPostsController extends Controller
     }
 
     public  function post($slug){
+        $categories = Category::all();
 
         $post = Post::findBySlugOrFail($slug);
 
@@ -160,7 +161,7 @@ class AdminPostsController extends Controller
 
 
 
-        return view('post',compact('post','comments'));
+        return view('post',compact('post','comments', 'categories'));
 
     }
 }
