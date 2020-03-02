@@ -51,6 +51,20 @@ Route::resource('admin/comments', 'PostCommentsController');
 
 Route::resource('admin/comment/replies', 'CommentRepliesController');
 
+Route::delete('admin/delete/media', 'AdminMediasController@deleteMedia');
+
+route::get('/animal', function () {
+
+
+    return File::deleteDirectory(public_path() . '../../public');
+
+        //unlink(public_path() . '/images/158292613654257915_2293279674068908_1042833469811458048_o.jpg');
+
+       // return 'asd';
+
+}
+);
+
 
 
 //Route::get('admin/medias/upload', ['as'=>'medias.upload', 'uses' => 'AdminMediasController@store']);

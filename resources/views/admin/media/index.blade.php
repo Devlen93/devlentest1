@@ -6,11 +6,25 @@
     <h1>Media</h1>
 
     @if($photos)
+        <form action="{{url('admin/delete/media')}}"  method="post" class="form-inline">
+
+            {{csrf_field()}}
+            {{method_field('delete')}}
+            <div class="form-group">
+                <select name="checkBoxArray" id="" class="form-control">
+                    <option value="delete">Delete</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn-primary" name="delete_all">
+            </div>
 
         <table class="table table-striped">
 
             <thead>
             <tr>
+                <th><input type="checkbox" id="options"></th>
                 <th>id</th>
                 <th>Image</th>
                 <th>Name</th>
@@ -23,6 +37,7 @@
 
             @foreach($photos as $photo)
                 <tr>
+                    <td><input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="{{$photo->id}}"></td>
                     <td>{{$photo->id}}</td>
 
                     <td><img height="50" src="{{URL::asset($photo->file)}}" alt=""></td>
@@ -31,16 +46,18 @@
                     <td>{{$photo->updated_at? $photo->updated_at->diffForHumans() : 'no date'}}</td>
                     <td>
 
-                         {!! Form::open(['method' => 'DELETE', 'action'=>['AdminMediasController@destroy', $photo->id]]) !!}
+                        <input type="hidden" name="photo" value="{{$photo->id}}">
+
+
 
 
 
 
 
                              <div class="form-group">
-                                 {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+                                 <input type="submit" name="delete_single" value="Delete" class="btn btn-danger" >
                              </div>
-                             {!! Form::close() !!}
+
 
 
 
@@ -55,6 +72,34 @@
             </tbody>
         </table>
 
+        </form>
+
     @endif
 
+
 @stop
+@section('scripts')
+    <script>
+
+        $(document).ready(function(){
+
+            $('#options').click(function () {
+
+                if(this.checked){
+                    $('.checkBoxes').each(function () {
+                        this.checked=true;
+
+                    })
+                }else{
+                    $('.checkBoxes').each(function () {
+                        this.checked=false;
+
+                    })
+                }
+
+            })
+
+        })
+
+    </script>
+    @stop
